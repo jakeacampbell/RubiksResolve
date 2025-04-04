@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Workspace\\GitHub\\RubiksResolve\\RubikResolve_C\u002B\u002B\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{79903BD2-D279-45AB-9438-B33670C46ABE}|RubikResolve\\RubikResolve.vcxproj|C:\\Workspace\\GitHub\\RubiksResolve\\RubikResolve_C\u002B\u002B\\RubikResolve\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{79903BD2-D279-45AB-9438-B33670C46ABE}|RubikResolve\\RubikResolve.vcxproj|solutionrelative:RubikResolve\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 322,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Workspace\\GitHub\\RubiksResolve\\RubikResolve_C\u002B\u002B\\RubikResolve\\main.cpp",
+              "RelativeDocumentMoniker": "RubikResolve\\main.cpp",
+              "ToolTip": "C:\\Workspace\\GitHub\\RubiksResolve\\RubikResolve_C\u002B\u002B\\RubikResolve\\main.cpp",
+              "RelativeToolTip": "RubikResolve\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-04T12:42:32.286Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
