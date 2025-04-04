@@ -1,11 +1,10 @@
 #include "CubeOperations.h"
 
 #pragma region cube_transformations
-void rotate_row_right(cube& cube_to_rotate, const grid_align_vertical pos_v)
+void rotate_row_right(Cube& cube_to_rotate, const GridAlignVertical pos_v)
 {
 	const int grid_offset = static_cast<int>(pos_v) * 3;
-
-	grid_t tmp[3];
+	TileColor tmp[3];
 
 	// temporary storage for 1 row
 	std::copy(&cube_to_rotate[FRONT][grid_offset], &cube_to_rotate[FRONT][grid_offset + 3], tmp);
@@ -17,11 +16,10 @@ void rotate_row_right(cube& cube_to_rotate, const grid_align_vertical pos_v)
 	std::copy(tmp, tmp + 3, &cube_to_rotate[RIGHT][grid_offset]);
 }
 
-void rotate_row_left(cube& cube_to_rotate, const grid_align_vertical pos_v)
+void rotate_row_left(Cube& cube_to_rotate, const GridAlignVertical pos_v)
 {
 	const int grid_offset = static_cast<int>(pos_v) * 3;
-
-	grid_t tmp[3];
+	TileColor tmp[3];
 
 	// temporary storage for 1 row
 	std::copy(&cube_to_rotate[FRONT][grid_offset], &cube_to_rotate[FRONT][grid_offset + 3], tmp);
@@ -41,10 +39,10 @@ void rotate_row_left(cube& cube_to_rotate, const grid_align_vertical pos_v)
 // centre: 1, 4, 7
 // right:  2, 5, 8
 
-void rotate_col_up(cube& cube_to_rotate, const grid_align_horizontal pos_h)
+void rotate_col_up(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
 {
 	const int col_offset = static_cast<int>(pos_h);
-	grid_t temp[3];
+	TileColor temp[3];
 
 	// temporary storage for front column
 	for (int i = 0; i < 3; ++i) {
@@ -66,9 +64,9 @@ void rotate_col_up(cube& cube_to_rotate, const grid_align_horizontal pos_h)
 	}
 }
 
-void rotate_col_down(cube& cube_to_rotate, grid_align_horizontal pos_h) {
+void rotate_col_down(Cube& cube_to_rotate, GridAlignHorizontal pos_h) {
 	const int col_offset = static_cast<int>(pos_h);
-	grid_t temp[3];
+	TileColor temp[3];
 
 	// temporary storage for front column
 	for (int i = 0; i < 3; ++i) {
@@ -90,17 +88,17 @@ void rotate_col_down(cube& cube_to_rotate, grid_align_horizontal pos_h) {
 	}
 }
 
-void roll_col_left(cube& cube_to_rotate, const grid_align_horizontal pos_h)
+void roll_col_left(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
 {
 }
 
-void roll_col_right(cube& cube_to_rotate, const grid_align_horizontal pos_h)
+void roll_col_right(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
 {
 }
-#pragma end region
+#pragma endregion
 
 #pragma region cube_visualization
-char grid_to_char(const grid_t& grid)
+char grid_to_char(const TileColor& grid)
 {
 	switch (grid) {
 	case WHITE: return 'W';
@@ -113,12 +111,12 @@ char grid_to_char(const grid_t& grid)
 	}
 }
 
-std::string visualize_cube(const cube& cube_to_visualize)
+std::string visualize_cube(const Cube& cube_to_visualize)
 {
 	std::string cube_visualization;
 
 	{
-		std::string top_viz = visualize_grid(cube_to_visualize[face_index::TOP]) + "\n"; // Top face above the front
+		std::string top_viz = visualize_grid(cube_to_visualize[FaceIndex::TOP]) + "\n"; // Top face above the front
 		for (int i = 0; i < 3; ++i) {  // Each face is 3 lines
 			cube_visualization += "    ";
 			cube_visualization += top_viz.substr(i * 3, 3) + "\n";  // Each line of face has 6 chars
@@ -126,10 +124,10 @@ std::string visualize_cube(const cube& cube_to_visualize)
 	}
 
 	{
-		std::string left_viz = visualize_grid(cube_to_visualize[face_index::LEFT]);
-		std::string front_viz = visualize_grid(cube_to_visualize[face_index::FRONT]);
-		std::string right_viz = visualize_grid(cube_to_visualize[face_index::RIGHT]);
-		std::string back_viz = visualize_grid(cube_to_visualize[face_index::BACK]);
+		std::string left_viz = visualize_grid(cube_to_visualize[FaceIndex::LEFT]);
+		std::string front_viz = visualize_grid(cube_to_visualize[FaceIndex::FRONT]);
+		std::string right_viz = visualize_grid(cube_to_visualize[FaceIndex::RIGHT]);
+		std::string back_viz = visualize_grid(cube_to_visualize[FaceIndex::BACK]);
 
 		for (int i = 0; i < 3; ++i) {  // Each face is 3 lines
 			cube_visualization += left_viz.substr(i * 3, 3) + " ";
@@ -140,7 +138,7 @@ std::string visualize_cube(const cube& cube_to_visualize)
 	}
 
 	{
-		std::string bottom_viz = visualize_grid(cube_to_visualize[face_index::BOTTOM]) + "\n"; // Top face above the front
+		std::string bottom_viz = visualize_grid(cube_to_visualize[FaceIndex::BOTTOM]) + "\n"; // Top face above the front
 		for (int i = 0; i < 3; ++i) {  // Each face is 3 lines
 			cube_visualization += "    ";
 			cube_visualization += bottom_viz.substr(i * 3, 3) + "\n";  // Each line of face has 6 chars
@@ -150,7 +148,7 @@ std::string visualize_cube(const cube& cube_to_visualize)
 	return cube_visualization;
 }
 
-std::string visualize_grid(const cube_face& grid_to_visualize)
+std::string visualize_grid(const CubeFace& grid_to_visualize)
 {
 	std::string grid_visualization;
 

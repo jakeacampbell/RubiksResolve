@@ -11,37 +11,59 @@
     { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE } \
 }
 
-enum grid_t {
-	WHITE,
-	YELLOW,
-	RED,
-	GREEN,
-	ORANGE,
-	BLUE
+/**
+ * @brief Enumerates the colors available on the Rubik's Cube.
+ */
+enum TileColor {
+    WHITE,   // Represents the white color on a cube face.
+    YELLOW,  // Represents the yellow color on a cube face.
+    RED,     // Represents the red color on a cube face.
+    GREEN,   // Represents the green color on a cube face.
+    ORANGE,  // Represents the orange color on a cube face.
+    BLUE     // Represents the blue color on a cube face.
 };
 
-enum face_index {
-	FRONT = 0,
-	BACK = 1,
-	LEFT = 2,
-	RIGHT = 3,
-	TOP = 4,
-	BOTTOM = 5,
+/**
+ * @brief Enumerates the indices of each face on the Rubik's Cube.
+ */
+enum FaceIndex {
+    FRONT = 0,  // The front face of the cube.
+    BACK,       // The back face of the cube.
+    LEFT,       // The left face of the cube.
+    RIGHT,      // The right face of the cube.
+    TOP,        // The top face of the cube.
+    BOTTOM      // The bottom face of the cube.
 };
 
-enum class grid_align_horizontal : uint8_t {
-	LEFT = 0,
-	CENTER = 1,
-	RIGHT = 2,
+/**
+ * @brief Defines the horizontal alignment for column operations.
+ */
+enum class GridAlignHorizontal : uint8_t {
+    LEFT = 0,   // The leftmost column of a face.
+    CENTER,     // The center column of a face.
+    RIGHT       // The rightmost column of a face.
 };
 
-enum class grid_align_vertical : uint8_t {
-	TOP = 0,
-	CENTER = 1,
-	BOTTOM = 2,
+/**
+ * @brief Defines the vertical alignment for row operations.
+ */
+enum class GridAlignVertical : uint8_t {
+    TOP = 0,    // The topmost row of a face.
+    CENTER,     // The center row of a face.
+    BOTTOM      // The bottom row of a face.
 };
 
-typedef grid_t cube_face[9];
-typedef cube_face cube[6];
+/**
+ * @brief Represents a single face of the Rubik's Cube as a one-dimensional array of grid_t elements.
+ */
+typedef TileColor CubeFace[9];
 
-constexpr cube default_cube_rep = DEFAULT_CUBE_CONTENT;
+/**
+ * @brief Represents the entire Rubik's Cube as an array of six cube_face elements, one for each face.
+ */
+typedef CubeFace Cube[6];
+
+/**
+ * @brief A default, solved configuration of the Rubik's Cube where each face is uniformly colored.
+ */
+constexpr Cube solved_cube_rep = DEFAULT_CUBE_CONTENT;
