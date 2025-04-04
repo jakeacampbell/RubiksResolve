@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "CubeTypes.h"
-#include "CubeOperations.h"
+#include "cube_types.h"
+#include "cube_operations.h"
 
 
 int main(int argc, char* argv[]) {
