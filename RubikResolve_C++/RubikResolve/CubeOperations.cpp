@@ -13,19 +13,53 @@ char grid_to_char(const grid_t& grid)
 	}
 }
 
-void rotate_row_right(const cube& cube_to_rotate, const grid_align_vertical pos_v)
+void rotate_row_right(cube& cube_to_rotate, const grid_align_vertical pos_v)
 {
+	const int grid_offset = static_cast<int>(pos_v) * 3;
+
+	grid_t tmp[3];
+
+	// temporary storage for 1 row
+	std::copy(&cube_to_rotate[FRONT][grid_offset], &cube_to_rotate[FRONT][grid_offset + 3], tmp);
+
+	// copy contents of one row to the adjacent face
+	std::copy(&cube_to_rotate[LEFT][grid_offset], &cube_to_rotate[LEFT][grid_offset + 3], &cube_to_rotate[FRONT][grid_offset]);
+	std::copy(&cube_to_rotate[BACK][grid_offset], &cube_to_rotate[BACK][grid_offset + 3], &cube_to_rotate[LEFT][grid_offset]);
+	std::copy(&cube_to_rotate[RIGHT][grid_offset], &cube_to_rotate[RIGHT][grid_offset + 3], &cube_to_rotate[BACK][grid_offset]);
+	std::copy(tmp, tmp + 3, &cube_to_rotate[RIGHT][grid_offset]);
 }
 
-void rotate_row_left(const cube& cube_to_rotate, const grid_align_vertical pos_v)
+void rotate_row_left(cube& cube_to_rotate, const grid_align_vertical pos_v)
 {
+	const int grid_offset = static_cast<int>(pos_v) * 3;
+
+	grid_t tmp[3];
+
+	// temporary storage for 1 row
+	std::copy(&cube_to_rotate[FRONT][grid_offset], &cube_to_rotate[FRONT][grid_offset + 3], tmp);
+
+	// copy contents of one row to the adjacent face
+	std::copy(&cube_to_rotate[RIGHT][grid_offset], &cube_to_rotate[RIGHT][grid_offset + 3], &cube_to_rotate[FRONT][grid_offset]);
+	std::copy(&cube_to_rotate[BACK][grid_offset], &cube_to_rotate[BACK][grid_offset + 3], &cube_to_rotate[RIGHT][grid_offset]);
+	std::copy(&cube_to_rotate[RIGHT][grid_offset], &cube_to_rotate[RIGHT][grid_offset + 3], &cube_to_rotate[LEFT][grid_offset]);
+	std::copy(tmp, tmp + 3, &cube_to_rotate[LEFT][grid_offset]);
 }
 
 void rotate_col_up(const cube& cube_to_rotate, const grid_align_horizontal pos_h)
 {
+
 }
 
 void rotate_col_down(const cube& cube_to_rotate, const grid_align_horizontal pos_h)
+{
+
+}
+
+void roll_col_left(const cube& cube_to_rotate, const grid_align_horizontal pos_h)
+{
+}
+
+void roll_col_right(const cube& cube_to_rotate, const grid_align_horizontal pos_h)
 {
 }
 
