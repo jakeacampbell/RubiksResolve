@@ -20,7 +20,7 @@ enum grid_t {
 	BLUE
 };
 
-enum class face_index : uint8_t {
+enum face_index {
 	FRONT = 0,
 	BACK = 1,
 	LEFT = 2,
