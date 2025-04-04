@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
 	std::cout << "Select grid position: ";
 	std::cin >> grid_index;
 
+
 	std::cout << grid_to_str(active_cube_rep[face_index][grid_index]);
 
 	std::cin.get();
