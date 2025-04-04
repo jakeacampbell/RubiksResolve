@@ -1,18 +1,6 @@
 #include "CubeOperations.h"
 
-char grid_to_char(const grid_t& grid)
-{
-	switch (grid) {
-		case WHITE: return 'W';
-		case YELLOW: return 'Y';
-		case RED: return 'R';
-		case GREEN: return 'G';
-		case ORANGE: return 'O';
-		case BLUE: return 'B';
-		default: return 'X';
-	}
-}
-
+#pragma region cube_transformations
 void rotate_row_right(cube& cube_to_rotate, const grid_align_vertical pos_v)
 {
 	const int grid_offset = static_cast<int>(pos_v) * 3;
@@ -109,13 +97,22 @@ void roll_col_left(cube& cube_to_rotate, const grid_align_horizontal pos_h)
 void roll_col_right(cube& cube_to_rotate, const grid_align_horizontal pos_h)
 {
 }
+#pragma end region
 
-/**
- * @brief 
- * @param cube_to_visualize 
- * @return
- * @TODO: Not my best attempt at text visualisation maybe rework
- */
+#pragma region cube_visualization
+char grid_to_char(const grid_t& grid)
+{
+	switch (grid) {
+	case WHITE: return 'W';
+	case YELLOW: return 'Y';
+	case RED: return 'R';
+	case GREEN: return 'G';
+	case ORANGE: return 'O';
+	case BLUE: return 'B';
+	default: return 'X';
+	}
+}
+
 std::string visualize_cube(const cube& cube_to_visualize)
 {
 	std::string cube_visualization;
@@ -167,3 +164,4 @@ std::string visualize_grid(const cube_face& grid_to_visualize)
 
 	return grid_visualization;
 }
+#pragma endregion
