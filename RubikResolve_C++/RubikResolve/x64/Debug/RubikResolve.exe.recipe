@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Workspace\GitHub\RubiksResolve\RubikResolve_C++\bin\x64\Debug\RubikResolve.exe</FullPath>
+      <FullPath>C:\Workspace\GitHub\RubiksResolve\RubikResolve_C++\build\x64\Debug\RubikResolve.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CubeOperations.h"
 
 char grid_to_char(const grid_t& grid)
