@@ -1,14 +1,17 @@
 #pragma once
 
 #include <iostream>
+#include <array>
 
-#define DEFAULT_CUBE_CONTENT { \
-    { WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE }, \
-    { YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW }, \
-    { RED, RED, RED, RED, RED, RED, RED, RED, RED }, \
-    { GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN }, \
-    { ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE }, \
-    { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE } \
+#define DEFAULT_CUBE_CONTENT {\
+    {\
+        { WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE }, \
+        { YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW }, \
+        { RED, RED, RED, RED, RED, RED, RED, RED, RED }, \
+        { GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN }, \
+        { ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE }, \
+        { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE } \
+    }\
 }
 
 /**
@@ -56,12 +59,12 @@ enum class GridAlignVertical : uint8_t {
 /**
  * @brief Represents a single face of the Rubik's Cube as a one-dimensional array of grid_t elements.
  */
-typedef TileColor CubeFace[9];
+typedef std::array<TileColor, 9> CubeFace;
 
 /**
  * @brief Represents the entire Rubik's Cube as an array of six cube_face elements, one for each face.
  */
-typedef CubeFace Cube[6];
+typedef std::array<CubeFace, 6> Cube;
 
 /**
  * @brief A default, solved configuration of the Rubik's Cube where each face is uniformly colored.
