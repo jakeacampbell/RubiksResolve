@@ -1,0 +1,24 @@
+#pragma once
+
+#define DEFAULT_CUBE_CONTENT { \
+    { WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE }, \
+    { YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW }, \
+    { RED, RED, RED, RED, RED, RED, RED, RED, RED }, \
+    { GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN, GREEN }, \
+    { ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE, ORANGE }, \
+    { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE } \
+}
+
+enum grid_t {
+	WHITE,
+	YELLOW,
+	RED,
+	GREEN,
+	ORANGE,
+	BLUE
+};
+
+typedef grid_t cube_face[9];
+typedef cube_face cube[6];
+
+constexpr cube default_cube_rep = DEFAULT_CUBE_CONTENT;
