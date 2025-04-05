@@ -3,6 +3,7 @@
 #include "gtest/gtest.h"
 #include "cube_operations.h"
 
+
 namespace TransformationTests
 {
 	constexpr Cube scrambled_test_cube_default = {{
@@ -64,7 +65,7 @@ namespace TransformationTests
 		EXPECT_EQ(scrambled_test_cube[FRONT][7], scrambled_test_cube_default[FRONT][5]); // Bottom Middle == old Right Middle
 		EXPECT_EQ(scrambled_test_cube[FRONT][8], scrambled_test_cube_default[FRONT][2]); // Bottom right == old Top Right
 		
-		EXPECT_EQ(scrambled_test_cube[FRONT][4], scrambled_test_cube_default[FRONT][4]); // Center does not change in inplace rotation
+		EXPECT_EQ(scrambled_test_cube[FRONT][4], scrambled_test_cube_default[FRONT][4]); // Center does not change in in place rotation
 	}
 
 	TEST(Rotate_Face, COUNTER_CLOCKWISE) {

@@ -1,6 +1,7 @@
 #include "pch.h"
 
 #include "cube_operations.h"
+#include <algorithm>
 
 #pragma region cube_transformations
 void rotate_face(CubeFace& face_to_rotate, const FaceRotationDirection direction)
@@ -49,8 +50,10 @@ void rotate_row_right(Cube& cube_to_rotate, const GridAlignVertical pos_v)
 
 	// copy contents of one row to the adjacent face
 	std::copy_n(&cube_to_rotate[LEFT][grid_offset], 3, &cube_to_rotate[FRONT][grid_offset]);
-	std::copy_n(&cube_to_rotate[BACK][grid_offset], 3, &cube_to_rotate[LEFT][grid_offset]);
-	std::copy_n(&cube_to_rotate[RIGHT][grid_offset], 3, &cube_to_rotate[BACK][grid_offset]);
+	//std::copy_n(&cube_to_rotate[BACK][grid_offset], 3, &cube_to_rotate[LEFT][grid_offset]);
+	std::reverse_copy(cube_to_rotate[BACK].begin() + grid_offset, cube_to_rotate[BACK].begin() + grid_offset + 3, &cube_to_rotate[LEFT][grid_offset]);
+	std::reverse_copy(cube_to_rotate[RIGHT].begin() + grid_offset, cube_to_rotate[RIGHT].begin() + grid_offset + 3, &cube_to_rotate[BACK][grid_offset]);
+	//std::copy_n(&cube_to_rotate[RIGHT][grid_offset], 3, &cube_to_rotate[BACK][grid_offset]);
 	std::copy_n(tmp, 3, &cube_to_rotate[RIGHT][grid_offset]);
 
 	if (pos_v == GridAlignVertical::TOP || pos_v == GridAlignVertical::BOTTOM) { 
@@ -71,8 +74,9 @@ void rotate_row_left(Cube& cube_to_rotate, const GridAlignVertical pos_v)
 
 	// copy contents of one row to the adjacent face
 	std::copy_n(&cube_to_rotate[RIGHT][grid_offset],3, &cube_to_rotate[FRONT][grid_offset]);
-	std::copy_n(&cube_to_rotate[BACK][grid_offset], 3, &cube_to_rotate[RIGHT][grid_offset]);
-	std::copy_n(&cube_to_rotate[LEFT][grid_offset], 3, &cube_to_rotate[BACK][grid_offset]);
+	std::reverse_copy(cube_to_rotate[BACK].begin() + grid_offset, cube_to_rotate[BACK].begin() + grid_offset + 3, &cube_to_rotate[RIGHT][grid_offset]);
+	std::reverse_copy(cube_to_rotate[LEFT].begin() + grid_offset, cube_to_rotate[LEFT].begin() + grid_offset + 3, &cube_to_rotate[BACK][grid_offset]);
+
 	std::copy_n(tmp, 3, &cube_to_rotate[LEFT][grid_offset]);
 
 	if (pos_v == GridAlignVertical::TOP || pos_v == GridAlignVertical::BOTTOM) {
@@ -82,14 +86,6 @@ void rotate_row_left(Cube& cube_to_rotate, const GridAlignVertical pos_v)
 		rotate_face(cube_to_rotate[face_to_rotate], direction);
 	}
 }
-
-// 0 1 2
-// 3 4 5
-// 6 7 8
-
-// left:   0, 3, 6
-// center: 1, 4, 7
-// right:  2, 5, 8
 
 void rotate_col_up(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
 {

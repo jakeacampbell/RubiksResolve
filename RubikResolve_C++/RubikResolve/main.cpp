@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
 	std::cout << "\n";
 	std::cout << visualize_cube(active_cube_rep);
 	
-	rotate_row_left(active_cube_rep, GridAlignVertical::TOP);
+	/*rotate_row_left(active_cube_rep, GridAlignVertical::TOP);
 	std::cout << "\n";
 	std::cout << "Rotating Left (TOP) \n";
 	std::cout << "\n";
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 	std::cout << "\n";
 	std::cout << "Rotating UP (LEFT) \n";
 	std::cout << "\n";
-	std::cout << visualize_cube(active_cube_rep);
+	std::cout << visualize_cube(active_cube_rep);*/
 
 	std::cin.get();
 
