@@ -8,13 +8,9 @@
 int main(int argc, char* argv[]) {
 	Cube active_cube_rep = DEFAULT_CUBE_CONTENT;
 
-	char face_index;
-	std::cout << "Enter to end..";
-	std::cin >> face_index;
-
 	std::cout << visualize_cube(active_cube_rep);
 
-	rotate_row_right(active_cube_rep, GridAlignVertical::CENTER);
+	rotate_row_right(active_cube_rep, GridAlignVertical::BOTTOM);
 	std::cout << "\n";
 	std::cout << "Rotating right (CENTRE)\n";
 	std::cout << "\n";

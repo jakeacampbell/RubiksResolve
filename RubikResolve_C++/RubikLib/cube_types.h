@@ -57,6 +57,17 @@ enum class GridAlignVertical : uint8_t {
 };
 
 /**
+ * @brief Specifies the rotation direction for face or row operations on the cube.
+ *
+ * This enum can be used to indicate whether a particular face should be
+ * rotated in a clockwise or counterclockwise direction.
+ */
+enum FaceRotationDirection {
+    CLOCK,    // Rotate in a clockwise direction
+    COUNTER_CLOCK,     // Rotate in a counter clockwise direction.
+};
+
+/**
  * @brief Represents a single face of the Rubik's Cube as a one-dimensional array of grid_t elements.
  */
 typedef std::array<TileColor, 9> CubeFace;

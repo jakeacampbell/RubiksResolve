@@ -4,6 +4,20 @@
 #include <string>
 
 #pragma region cube_transformations
+
+/**
+ * @brief Rotates a single 3x3 face of the Rubik's Cube.
+ *
+ * This function applies a 90-degree rotation in the specified direction
+ * to the provided face. The face's contents (the 9 squares of the 3x3 grid)
+ * are rearranged accordingly, simulating a physical rotation on that face
+ * of the Rubik's Cube.
+ *
+ * @param face_to_rotate A reference to the 3x3 array representing the face to be rotated.
+ * @param direction The direction of the rotation (e.g., clockwise, counter clockwise).
+ */
+void rotate_face(CubeFace& face_to_rotate, const FaceRotationDirection direction);
+
 /**
  * @brief Rotates a specified row to the right (clockwise) on the Rubik's Cube.
  * @param cube_to_rotate Reference to the Cube to be manipulated.
