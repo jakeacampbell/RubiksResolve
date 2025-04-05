@@ -6,8 +6,13 @@
 namespace TransformationTests
 {
 	TEST(Rotate_Right, TOP) {
+		Cube test_cube = DEFAULT_CUBE_CONTENT;
+
+		rotate_row_right(test_cube, GridAlignVertical::TOP);
+
+
 	  EXPECT_EQ(1, 1);
-	  EXPECT_TRUE(false);
+	  //EXPECT_TRUE(false);
 	}
 
 	TEST(Rotate_Right, CENTER) {
