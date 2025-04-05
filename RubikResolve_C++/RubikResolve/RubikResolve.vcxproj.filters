@@ -21,9 +21,6 @@
     <ClCompile Include="cube_operations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cube_operations_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cube_types.h">
@@ -32,8 +29,5 @@
     <ClInclude Include="cube_operations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

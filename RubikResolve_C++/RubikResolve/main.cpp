@@ -5,7 +5,6 @@
 #include "cube_types.h"
 #include "cube_operations.h"
 
-
 int main(int argc, char* argv[]) {
 	Cube active_cube_rep = DEFAULT_CUBE_CONTENT;
 
