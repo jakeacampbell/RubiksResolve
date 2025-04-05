@@ -1,7 +1,6 @@
 #pragma once
 
 #include "cube_types.h"
-
 #include <string>
 
 #pragma region cube_transformations

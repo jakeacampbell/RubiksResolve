@@ -1,3 +1,5 @@
+#include "pch.h"
+
 #include "cube_operations.h"
 
 #pragma region cube_transformations
