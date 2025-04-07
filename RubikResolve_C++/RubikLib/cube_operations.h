@@ -37,28 +37,31 @@ void rotate_row_left(Cube& cube_to_rotate, const GridAlignVertical pos_v);
  * @param cube_to_rotate Reference to the Cube to be manipulated.
  * @param pos_h The column (horizontal position) to rotate, typically left, center, or right.
  */
-void rotate_col_up(Cube& cube_to_rotate, const GridAlignHorizontal pos_h);
+void roll_col_up(Cube& cube_to_rotate, const GridAlignHorizontal pos_h);
 
 /**
  * @brief Rotates a specified column downwards on the Rubik's Cube.
  * @param cube_to_rotate Reference to the Cube to be manipulated.
  * @param pos_h The column (horizontal position) to rotate, typically left, center, or right.
  */
-void rotate_col_down(Cube& cube_to_rotate, const GridAlignHorizontal pos_h);
+void roll_col_down(Cube& cube_to_rotate, const GridAlignHorizontal pos_h);
 
 /**
  * @brief Rolls a specified column to the left across the cube faces.
  * @param cube_to_rotate Reference to the Cube to be manipulated.
  * @param pos_h The column (horizontal position) to roll, typically left, center, or right.
  */
-void roll_col_left(Cube& cube_to_rotate, const GridAlignHorizontal pos_h);
+void roll_col_left(Cube& cube_to_rotate, const GridLayerDepth pos_d);
 
 /**
  * @brief Rolls a specified column to the right across the cube faces.
  * @param cube_to_rotate Reference to the Cube to be manipulated.
  * @param pos_h The column (horizontal position) to roll, typically left, center, or right.
  */
-void roll_col_right(Cube& cube_to_rotate, const GridAlignHorizontal pos_h);
+void roll_col_right(Cube& cube_to_rotate, const GridLayerDepth pos_d);
+
+
+
 #pragma endregion
 
 #pragma region cube_visualization

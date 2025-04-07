@@ -56,6 +56,12 @@ enum class GridAlignVertical : uint8_t {
     BOTTOM      // The bottom row of a face.
 };
 
+enum GridLayerDepth {
+    FRONT,
+    MIDDLE,
+    BACK
+};
+
 /**
  * @brief Specifies the rotation direction for face or row operations on the cube.
  *

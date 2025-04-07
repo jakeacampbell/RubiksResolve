@@ -87,7 +87,7 @@ void rotate_row_left(Cube& cube_to_rotate, const GridAlignVertical pos_v)
 	}
 }
 
-void rotate_col_up(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
+void roll_col_up(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
 {
 	const int col_offset = static_cast<int>(pos_h);
 	TileColor temp[3];
@@ -119,7 +119,7 @@ void rotate_col_up(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
 	}
 }
 
-void rotate_col_down(Cube& cube_to_rotate, GridAlignHorizontal pos_h) {
+void roll_col_down(Cube& cube_to_rotate, GridAlignHorizontal pos_h) {
 	const int col_offset = static_cast<int>(pos_h);
 	TileColor temp[3];
 
@@ -150,11 +150,11 @@ void rotate_col_down(Cube& cube_to_rotate, GridAlignHorizontal pos_h) {
 	}
 }
 
-void roll_col_left(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
+void roll_col_left(Cube& cube_to_rotate, const GridLayerDepth pos_d)
 {
 }
 
-void roll_col_right(Cube& cube_to_rotate, const GridAlignHorizontal pos_h)
+void roll_col_right(Cube& cube_to_rotate, const GridLayerDepth pos_d)
 {
 }
 #pragma endregion
