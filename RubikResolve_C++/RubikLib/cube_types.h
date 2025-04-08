@@ -56,7 +56,7 @@ enum class GridAlignVertical : uint8_t {
     BOTTOM      // The bottom row of a face.
 };
 
-enum GridLayerDepth {
+enum class GridLayerDepth : uint8_t{
     FRONT,
     MIDDLE,
     BACK

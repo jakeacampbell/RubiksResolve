@@ -555,7 +555,7 @@ namespace TransformationTests
 		Cube scrambled_test_cube = scrambled_test_cube_default;
 
 		// Act
-		roll_col_left(scrambled_test_cube, FRONT);
+		roll_col_left(scrambled_test_cube, GridLayerDepth::FRONT);
 
 		// Assert
 
@@ -607,7 +607,7 @@ namespace TransformationTests
 		Cube scrambled_test_cube = scrambled_test_cube_default;
 
 		// Act
-		roll_col_left(scrambled_test_cube, MIDDLE);
+		roll_col_left(scrambled_test_cube, GridLayerDepth::MIDDLE);
 
 		// Assert
 
@@ -641,7 +641,7 @@ namespace TransformationTests
 		Cube scrambled_test_cube = scrambled_test_cube_default;
 
 		// Act
-		roll_col_left(scrambled_test_cube, BACK);
+		roll_col_left(scrambled_test_cube, GridLayerDepth::BACK);
 
 		// Assert
 
@@ -686,25 +686,129 @@ namespace TransformationTests
 
 	TEST(Roll_Right, FRONT) {
 		// Arrange
-		Cube test_cube = scrambled_test_cube_default;
+		Cube scrambled_test_cube = scrambled_test_cube_default;
 
 		// Act
-		roll_col_right(test_cube, FRONT);
+		roll_col_right(scrambled_test_cube, GridLayerDepth::FRONT);
+
+		// Assert
+
+		// Top face row closest to front face should move to RIGHT face front-closest column
+		EXPECT_EQ(scrambled_test_cube[RIGHT][0], scrambled_test_cube_default[TOP][6]);
+		EXPECT_EQ(scrambled_test_cube[RIGHT][3], scrambled_test_cube_default[TOP][7]);
+		EXPECT_EQ(scrambled_test_cube[RIGHT][6], scrambled_test_cube_default[TOP][8]);
+
+		// LEFT face column closest to front face should move to BOTTOM face front-closest row
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][0], scrambled_test_cube_default[RIGHT][6]);
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][1], scrambled_test_cube_default[RIGHT][3]);
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][2], scrambled_test_cube_default[RIGHT][0]);
+
+		// BOTTOM face row closest to front face should move to RIGHT face front-closest column
+		EXPECT_EQ(scrambled_test_cube[LEFT][2], scrambled_test_cube_default[BOTTOM][0]);
+		EXPECT_EQ(scrambled_test_cube[LEFT][5], scrambled_test_cube_default[BOTTOM][1]);
+		EXPECT_EQ(scrambled_test_cube[LEFT][8], scrambled_test_cube_default[BOTTOM][2]);
+
+		// RIGHT face column closest to front face should move to TOP face front-closest row
+		EXPECT_EQ(scrambled_test_cube[TOP][6], scrambled_test_cube_default[LEFT][8]);
+		EXPECT_EQ(scrambled_test_cube[TOP][7], scrambled_test_cube_default[LEFT][5]);
+		EXPECT_EQ(scrambled_test_cube[TOP][8], scrambled_test_cube_default[LEFT][2]);
+
+		// Front face should rotate 90 degrees clockwise
+		EXPECT_EQ(scrambled_test_cube[FRONT][0], scrambled_test_cube_default[FRONT][6]); // Top Left == old Bottom Left
+		EXPECT_EQ(scrambled_test_cube[FRONT][1], scrambled_test_cube_default[FRONT][3]); // Top Middle == old Left Middle
+		EXPECT_EQ(scrambled_test_cube[FRONT][2], scrambled_test_cube_default[FRONT][0]); // Top right == old Top left
+
+		EXPECT_EQ(scrambled_test_cube[FRONT][3], scrambled_test_cube_default[FRONT][7]); // Middle Left == old Bottom Middle
+		EXPECT_EQ(scrambled_test_cube[FRONT][5], scrambled_test_cube_default[FRONT][1]); // Middle right == old Top Middle
+
+		EXPECT_EQ(scrambled_test_cube[FRONT][6], scrambled_test_cube_default[FRONT][8]); // Bottom Left == old Bottom Right
+		EXPECT_EQ(scrambled_test_cube[FRONT][7], scrambled_test_cube_default[FRONT][5]); // Bottom Middle == old Right Middle
+		EXPECT_EQ(scrambled_test_cube[FRONT][8], scrambled_test_cube_default[FRONT][2]); // Bottom right == old Top Right
+
+		EXPECT_EQ(scrambled_test_cube[FRONT][4], scrambled_test_cube_default[FRONT][4]); // Center does not change in in place rotation
+
+		// Back face should be unchanged
+		EXPECT_EQ(scrambled_test_cube[BACK], scrambled_test_cube_default[BACK]);
 	}
 
 	TEST(Roll_Right, MIDDLE) {
 		// Arrange
-		Cube test_cube = scrambled_test_cube_default;
+		Cube scrambled_test_cube = scrambled_test_cube_default;
 
 		// Act
-		roll_col_right(test_cube, MIDDLE);
+		roll_col_right(scrambled_test_cube, GridLayerDepth::MIDDLE);
+
+		// Assert
+
+		// TOP face middle row should move to RIGHT face middle column
+		EXPECT_EQ(scrambled_test_cube[RIGHT][1], scrambled_test_cube_default[TOP][3]);
+		EXPECT_EQ(scrambled_test_cube[RIGHT][4], scrambled_test_cube_default[TOP][4]);
+		EXPECT_EQ(scrambled_test_cube[RIGHT][7], scrambled_test_cube_default[TOP][5]);
+
+		// RIGHT face middle column should move to BOTTOM face middle row
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][3], scrambled_test_cube_default[RIGHT][7]);
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][4], scrambled_test_cube_default[RIGHT][4]);
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][5], scrambled_test_cube_default[RIGHT][1]);
+
+		// BOTTOM face middle row should move to LEFT face middle column
+		EXPECT_EQ(scrambled_test_cube[LEFT][1], scrambled_test_cube_default[BOTTOM][3]);
+		EXPECT_EQ(scrambled_test_cube[LEFT][4], scrambled_test_cube_default[BOTTOM][4]);
+		EXPECT_EQ(scrambled_test_cube[LEFT][7], scrambled_test_cube_default[BOTTOM][5]);
+
+		// LEFT face middle column should move to TOP face middle row
+		EXPECT_EQ(scrambled_test_cube[TOP][3], scrambled_test_cube_default[LEFT][7]);
+		EXPECT_EQ(scrambled_test_cube[TOP][4], scrambled_test_cube_default[LEFT][4]);
+		EXPECT_EQ(scrambled_test_cube[TOP][5], scrambled_test_cube_default[LEFT][1]);
+
+		// Front and back face should be unchanged
+		EXPECT_EQ(scrambled_test_cube[FRONT], scrambled_test_cube_default[FRONT]);
+		EXPECT_EQ(scrambled_test_cube[BACK], scrambled_test_cube_default[BACK]);
 	}
 
 	TEST(Roll_Right, BACK) {
 		// Arrange
-		Cube test_cube = scrambled_test_cube_default;
+		Cube scrambled_test_cube = scrambled_test_cube_default;
 
 		// Act
-		roll_col_right(test_cube, BACK);
+		roll_col_right(scrambled_test_cube, GridLayerDepth::BACK);
+
+		// Assert
+
+		// Top face row closest to front face should move to RIGHT face front-closest column
+		EXPECT_EQ(scrambled_test_cube[RIGHT][2], scrambled_test_cube_default[TOP][0]);
+		EXPECT_EQ(scrambled_test_cube[RIGHT][5], scrambled_test_cube_default[TOP][1]);
+		EXPECT_EQ(scrambled_test_cube[RIGHT][8], scrambled_test_cube_default[TOP][2]);
+
+		// LEFT face column closest to front face should move to BOTTOM face front-closest row
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][6], scrambled_test_cube_default[RIGHT][8]);
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][7], scrambled_test_cube_default[RIGHT][5]);
+		EXPECT_EQ(scrambled_test_cube[BOTTOM][8], scrambled_test_cube_default[RIGHT][2]);
+
+		// BOTTOM face row closest to front face should move to RIGHT face front-closest column
+		EXPECT_EQ(scrambled_test_cube[LEFT][0], scrambled_test_cube_default[BOTTOM][6]);
+		EXPECT_EQ(scrambled_test_cube[LEFT][3], scrambled_test_cube_default[BOTTOM][7]);
+		EXPECT_EQ(scrambled_test_cube[LEFT][6], scrambled_test_cube_default[BOTTOM][8]);
+
+		// RIGHT face column closest to front face should move to TOP face front-closest row
+		EXPECT_EQ(scrambled_test_cube[TOP][0], scrambled_test_cube_default[LEFT][6]);
+		EXPECT_EQ(scrambled_test_cube[TOP][1], scrambled_test_cube_default[LEFT][3]);
+		EXPECT_EQ(scrambled_test_cube[TOP][2], scrambled_test_cube_default[LEFT][0]);
+
+		// BACK face should rotate 90 degrees clockwise
+		EXPECT_EQ(scrambled_test_cube[BACK][0], scrambled_test_cube_default[BACK][6]); // Top Left == old Bottom Left
+		EXPECT_EQ(scrambled_test_cube[BACK][1], scrambled_test_cube_default[BACK][3]); // Top Middle == old Left Middle
+		EXPECT_EQ(scrambled_test_cube[BACK][2], scrambled_test_cube_default[BACK][0]); // Top right == old Top left
+
+		EXPECT_EQ(scrambled_test_cube[BACK][3], scrambled_test_cube_default[BACK][7]); // Middle Left == old Bottom Middle
+		EXPECT_EQ(scrambled_test_cube[BACK][5], scrambled_test_cube_default[BACK][1]); // Middle right == old Top Middle
+
+		EXPECT_EQ(scrambled_test_cube[BACK][6], scrambled_test_cube_default[BACK][8]); // Bottom Left == old Bottom Right
+		EXPECT_EQ(scrambled_test_cube[BACK][7], scrambled_test_cube_default[BACK][5]); // Bottom Middle == old Right Middle
+		EXPECT_EQ(scrambled_test_cube[BACK][8], scrambled_test_cube_default[FRONT][2]); // Bottom right == old Top Right
+
+		EXPECT_EQ(scrambled_test_cube[BACK][4], scrambled_test_cube_default[BACK][4]); // Center does not change in in place rotation
+
+		// Front face should be unchanged
+		EXPECT_EQ(scrambled_test_cube[FRONT], scrambled_test_cube_default[FRONT]);
 	}
 }
