@@ -152,10 +152,59 @@ void roll_col_down(Cube& cube_to_rotate, GridAlignHorizontal pos_h) {
 
 void roll_col_left(Cube& cube_to_rotate, const GridLayerDepth pos_d)
 {
+	if (pos_d == GridLayerDepth::FRONT) rotate_face(cube_to_rotate[FRONT], COUNTER_CLOCK);
+	if (pos_d == GridLayerDepth::BACK) rotate_face(cube_to_rotate[BACK], COUNTER_CLOCK);
+
+	// 1) Save TOP row [6,7,8]
+	TileColor temp_top[3];
+	temp_top[0] = cube_to_rotate[TOP][6];
+	temp_top[1] = cube_to_rotate[TOP][7];
+	temp_top[2] = cube_to_rotate[TOP][8];
+
+	// 2) Move LEFT col [8,5,2] into temp_left
+	TileColor temp_left[3];
+	temp_left[0] = cube_to_rotate[LEFT][8];
+	temp_left[1] = cube_to_rotate[LEFT][5];
+	temp_left[2] = cube_to_rotate[LEFT][2];
+
+	// 3) Move BOTTOM row [0,1,2] into temp_bottom
+	TileColor temp_bottom[3];
+	temp_bottom[0] = cube_to_rotate[BOTTOM][0];
+	temp_bottom[1] = cube_to_rotate[BOTTOM][1];
+	temp_bottom[2] = cube_to_rotate[BOTTOM][2];
+
+	// 4) Move RIGHT col [6,3,0] into temp_right
+	TileColor temp_right[3];
+	temp_right[0] = cube_to_rotate[RIGHT][6];
+	temp_right[1] = cube_to_rotate[RIGHT][3];
+	temp_right[2] = cube_to_rotate[RIGHT][0];
+
+	// SHIFT them in “left” direction:
+	// (A) top -> left
+	cube_to_rotate[LEFT][8] = temp_top[0];
+	cube_to_rotate[LEFT][5] = temp_top[1];
+	cube_to_rotate[LEFT][2] = temp_top[2];
+
+	// (B) left -> bottom
+	cube_to_rotate[BOTTOM][0] = temp_left[0];
+	cube_to_rotate[BOTTOM][1] = temp_left[1];
+	cube_to_rotate[BOTTOM][2] = temp_left[2];
+
+	// (C) bottom -> right
+	cube_to_rotate[RIGHT][6] = temp_bottom[0];
+	cube_to_rotate[RIGHT][3] = temp_bottom[1];
+	cube_to_rotate[RIGHT][0] = temp_bottom[2];
+
+	// (D) right -> top
+	cube_to_rotate[TOP][6] = temp_right[0];
+	cube_to_rotate[TOP][7] = temp_right[1];
+	cube_to_rotate[TOP][8] = temp_right[2];
 }
 
 void roll_col_right(Cube& cube_to_rotate, const GridLayerDepth pos_d)
 {
+	if (pos_d == GridLayerDepth::FRONT) rotate_face(cube_to_rotate[FRONT], CLOCK);
+	if (pos_d == GridLayerDepth::BACK) rotate_face(cube_to_rotate[BACK], CLOCK);
 }
 #pragma endregion
 
